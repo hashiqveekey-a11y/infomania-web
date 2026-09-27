@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "Control Resonant Launches: Federal Bureau of Control Expands Across Manhattan",
+    "category": "Gaming",
+    "badge": "Gaming Premiere",
+    "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&auto=format&fit=crop&q=80",
+    "snippet": "Remedy's supernatural universe breaks out into the open city with shape-shifting weapon combat, deep paranatural abilities, and Unreal Engine 5 visual fidelity.",
+    "content": "Remedy Entertainment expands the Federal Bureau of Control universe with the launch of Control Resonant. Players control Dylan Faden across an infested, shifting Manhattan landscape wielding the morphing Aberrant weapon and evolving paranatural skills to restore containment.",
+    "source": "IGN",
+    "time": "2h ago",
+    "isHero": true,
+    "trending": false
+  },
+  {
+    "id": 2,
+    "title": "Apple Debuts Commercial 2nm A20 Pro Nodes",
+    "category": "Technology",
+    "badge": "Semiconductors",
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80",
+    "snippet": "Sub-2nm lithography pairs with physical variable aperture cameras and real-time sensor verification.",
+    "content": "Apple introduces the iPhone 18 Pro lineup powered by custom 2-nanometer A20 Pro chipsets. The flagship brings mechanical six-blade variable aperture lenses, cryptographic sensor-level pixel authenticity, and on-device Private Cloud Compute.",
+    "source": "Apple Newsroom",
+    "time": "4h ago",
+    "isHero": false,
+    "trending": false
+  },
+  {
+    "id": 3,
+    "title": "AI & Edge ML Engineer Shortages Drive Salary Hikes",
+    "category": "Jobs",
+    "badge": "Hiring Trends",
+    "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=80",
+    "snippet": "Demand for qualified machine learning and multi-cloud engineers outpaces available candidates 3 to 1.",
+    "content": "International hiring data highlights acute talent shortfalls for edge-ML specialists and cloud architects. Companies across global tech hubs are expediting two-week hiring turnarounds with remote-first compensations reaching new benchmarks.",
+    "source": "TechCareers",
+    "time": "6h ago",
+    "isHero": false,
+    "trending": false
+  },
+  {
+    "id": 4,
+    "title": "Silent Hill: Townfall brings retro CRT tracking horror",
+    "category": "Gaming",
+    "badge": "Horror",
+    "image": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80",
+    "snippet": "Konami reveals a first-person psychological horror overhaul.",
+    "content": "Konami and No Code reveal a first-person perspective overhaul with CRT television mechanics and minimal UI for raw psychological tension.",
+    "source": "Overclockers",
+    "time": "3h ago",
+    "isHero": false,
+    "trending": true
+  },
+  {
+    "id": 5,
+    "title": "New marine buoy fields convert 90% wave kinetic power",
+    "category": "Technology",
+    "badge": "Clean Energy",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80",
+    "snippet": "Commercial offshore buoy arrays operate at near-total mechanical kinetic efficiency.",
+    "content": "Clean-tech marine engineering trials confirm commercial offshore buoy arrays operating at near-total mechanical kinetic efficiency under heavy oceanic swell tests.",
+    "source": "TechRadar",
+    "time": "5h ago",
+    "isHero": false,
+    "trending": true
+  },
+  {
+    "id": 6,
+    "title": "Global tech hubs expand sponsored hiring for cloud leads",
+    "category": "Jobs",
+    "badge": "Global Careers",
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80",
+    "snippet": "Digital acceleration programs expand sponsored relocation for senior DevOps architects.",
+    "content": "Enterprise digital acceleration programs expand sponsored relocation for senior DevOps and security architects by over 30% across leading business hubs.",
+    "source": "GlobalRecruit",
+    "time": "8h ago",
+    "isHero": false,
+    "trending": true
+  }
+]
