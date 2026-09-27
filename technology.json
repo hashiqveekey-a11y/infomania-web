@@ -1,644 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tech Horizon - INFOMANIA</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-dark: #090d16;
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --accent-tech: #06b6d4;
-      --accent-blue: #3b82f6;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.15) 0%, transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(59, 130, 246, 0.12) 0%, transparent 45%);
-      background-attachment: fixed;
-    }
-
-    .wrapper {
-      width: 100%;
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* Navbar */
-    header {
-      padding: 20px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--card-border);
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      z-index: 100;
-    }
-
-    .brand {
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-decoration: none;
-    }
-
-    .category-group {
-      display: flex;
-      gap: 12px;
-    }
-
-    .cat-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 18px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-decoration: none;
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .cat-btn.home { background: rgba(255, 255, 255, 0.05); }
-    .cat-btn.game { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
-    .cat-btn.tech {
-      background: linear-gradient(135deg, #06b6d4, #3b82f6);
-      box-shadow: 0 4px 18px rgba(6, 182, 212, 0.4);
-      border-color: rgba(56, 189, 248, 0.4);
-    }
-    .cat-btn.job { background: linear-gradient(135deg, #059669, #047857); }
-
-    .cat-btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.1);
-    }
-
-    /* Adsterra Wrapper Styles */
-    .adsterra-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .ad-leaderboard {
-      width: 100%;
-      min-height: 90px;
-      margin: 20px 0 10px;
-      overflow-x: auto;
-    }
-
-    .ad-infeed {
-      width: 100%;
-      min-height: 90px;
-      margin: 12px 0;
-      overflow-x: auto;
-    }
-
-    .ad-sidebar {
-      width: 100%;
-      min-height: 600px;
-      padding: 10px 0;
-    }
-
-    /* Hero Headline */
-    .tech-hero {
-      margin: 24px 0;
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      min-height: 400px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: linear-gradient(180deg, rgba(9, 13, 22, 0.2) 0%, rgba(9, 13, 22, 0.95) 100%);
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .tech-hero:hover {
-      transform: translateY(-4px);
-    }
-
-    .hero-body {
-      position: relative;
-      z-index: 2;
-      max-width: 680px;
-    }
-
-    .tag-chip {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 5px 12px;
-      border-radius: 9999px;
-      background: linear-gradient(135deg, #06b6d4, #3b82f6);
-      color: #ffffff;
-      margin-bottom: 12px;
-    }
-
-    .tech-hero h2 {
-      font-size: 2.1rem;
-      font-weight: 800;
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-
-    .tech-hero p {
-      color: var(--text-muted);
-      font-size: 0.98rem;
-      line-height: 1.5;
-    }
-
-    /* Layout Grid */
-    .layout-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 32px;
-      margin-bottom: 40px;
-    }
-
-    .articles-feed {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .tech-card {
-      display: flex;
-      gap: 20px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      overflow: hidden;
-      padding: 16px;
-      cursor: pointer;
-      transition: transform 0.25s ease, border-color 0.25s ease;
-      backdrop-filter: blur(10px);
-    }
-
-    .tech-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(6, 182, 212, 0.4);
-    }
-
-    .tech-card img {
-      width: 180px;
-      height: 125px;
-      object-fit: cover;
-      border-radius: 10px;
-      flex-shrink: 0;
-    }
-
-    .tech-card-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex: 1;
-    }
-
-    .tech-card-content h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      line-height: 1.35;
-    }
-
-    .tech-card-content p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      margin-bottom: 8px;
-    }
-
-    .meta {
-      font-size: 0.75rem;
-      color: #64748b;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .sidebar-widget {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 24px;
-      backdrop-filter: blur(10px);
-    }
-
-    .sidebar-widget h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 16px;
-      border-bottom: 2px solid var(--accent-tech);
-      padding-bottom: 8px;
-    }
-
-    .sidebar-widget ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .sidebar-widget li {
-      display: flex;
-      gap: 12px;
-      cursor: pointer;
-      align-items: center;
-      transition: opacity 0.2s ease;
-    }
-
-    .sidebar-widget li:hover {
-      opacity: 0.8;
-    }
-
-    .sidebar-widget .num {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: #334155;
-    }
-
-    .sidebar-widget span.text {
-      font-size: 0.88rem;
-      font-weight: 600;
-      line-height: 1.35;
-    }
-
-    /* Reader Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(4, 7, 13, 0.85);
-      backdrop-filter: blur(10px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 200;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal-card {
-      background: #0f172a;
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 680px;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 30px;
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: var(--text-main);
-      font-size: 1.2rem;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    .modal-card img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin: 16px 0;
-    }
-
-    .modal-card h2 {
-      font-size: 1.5rem;
-      margin-top: 10px;
-      line-height: 1.3;
-    }
-
-    .modal-card p {
-      color: var(--text-muted);
-      line-height: 1.65;
-      font-size: 0.95rem;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--card-border);
-      padding: 28px 0;
-      margin-top: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-      margin-left: 16px;
-    }
-
-    footer a:hover {
-      color: #38bdf8;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .layout-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      header {
-        flex-direction: column;
-        gap: 14px;
-        align-items: flex-start;
-      }
-      .category-group {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 6px;
-      }
-      .cat-btn {
-        justify-content: center;
-        padding: 8px 4px;
-        font-size: 0.75rem;
-      }
-      .tech-hero {
-        min-height: 280px;
-        padding: 20px;
-      }
-      .tech-hero h2 {
-        font-size: 1.35rem;
-      }
-      .tech-card {
-        flex-direction: column;
-      }
-      .tech-card img {
-        width: 100%;
-        height: 160px;
-      }
-      footer {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
-      }
-      footer a {
-        margin: 0 8px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="wrapper">
-    <!-- Navbar with Active Tech Highlight -->
-    <header>
-      <a href="index.html" class="brand">INFOMANIA</a>
-      <nav class="category-group">
-        <a href="index.html" class="cat-btn home">🏠 Home</a>
-        <a href="games.html" class="cat-btn game">🎮 Games</a>
-        <a href="technology.html" class="cat-btn tech">🚀 Tech</a>
-        <a href="jobs.html" class="cat-btn job">💼 Jobs</a>
-      </nav>
-    </header>
-
-    <!-- Top Leaderboard Adsterra 728x90 -->
-    <div class="adsterra-wrapper ad-leaderboard">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '26440bed54d9f198e10c7a876eda05cf',
-          'format' : 'iframe',
-          'height' : 90,
-          'width' : 728,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="https://www.highrevenueformat.com/26440bed54d9f198e10c7a876eda05cf/invoke.js"></script>
-    </div>
-
-    <!-- Featured Hero Spotlight -->
-    <section class="tech-hero" id="heroTechContainer">
-      <div class="hero-body">
-        <span class="tag-chip" id="heroTechBadge">Breakthrough</span>
-        <h2 id="heroTechTitle">Loading Tech Breakthrough...</h2>
-        <p id="heroTechSnippet"></p>
-      </div>
-    </section>
-
-    <!-- Layout: Articles + Sidebar -->
-    <main class="layout-grid">
-      <!-- Article List Feed -->
-      <section class="articles-feed" id="articlesFeedContainer">
-        <!-- Rendered dynamically from technology.json with middle in-feed ad -->
-      </section>
-
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <div class="sidebar-widget">
-          <h3>Breakthrough Radar</h3>
-          <ul id="techRadarContainer">
-            <!-- Rendered dynamically from technology.json -->
-          </ul>
-        </div>
-
-        <!-- Adsterra 160x600 Vertical Banner -->
-        <div class="adsterra-wrapper ad-sidebar">
-          <script type="text/javascript">
-            atOptions = {
-              'key' : 'd184a7e889d1a9d742433dfcc5fafef2',
-              'format' : 'iframe',
-              'height' : 600,
-              'width' : 160,
-              'params' : {}
-            };
-          </script>
-          <script type="text/javascript" src="https://www.highrevenueformat.com/d184a7e889d1a9d742433dfcc5fafef2/invoke.js"></script>
-        </div>
-      </aside>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-      <div>&copy; 2026 INFOMANIA. Curated by Hashiq VK.</div>
-      <div>
-        <a href="index.html">Home</a>
-        <a href="games.html">Games</a>
-        <a href="jobs.html">Jobs</a>
-        <a href="mailto:hashiqveekey@gmail.com">Contact</a>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Modal Article View -->
-  <div class="modal-overlay" id="techModal" onclick="handleOutside(event)">
-    <div class="modal-card">
-      <button class="close-btn" onclick="closeStory()">&times;</button>
-      <span class="tag-chip" id="mTag">Technology</span>
-      <h2 id="mTitle"></h2>
-      <div class="meta" id="mMeta" style="margin: 8px 0;"></div>
-      <img id="mImg" src="" alt="Story visual" />
-      <p id="mBody"></p>
-    </div>
-  </div>
-
-  <script>
-    let techArticles = [];
-
-    async function fetchTechNews() {
-      try {
-        const response = await fetch('technology.json');
-        if (!response.ok) throw new Error('Failed to load technology.json');
-        techArticles = await response.json();
-        renderTech();
-      } catch (err) {
-        console.error('Error fetching technology.json:', err);
-      }
-    }
-
-    function renderTech() {
-      if (!techArticles.length) return;
-
-      // 1. Render Hero Spotlight
-      const hero = techArticles.find(a => a.isHero) || techArticles[0];
-      const heroEl = document.getElementById('heroTechContainer');
-      heroEl.style.backgroundImage = `linear-gradient(180deg, rgba(9, 13, 22, 0.2) 0%, rgba(9, 13, 22, 0.95) 100%), url('${hero.image}')`;
-      document.getElementById('heroTechBadge').innerText = hero.badge || hero.category;
-      document.getElementById('heroTechTitle').innerText = hero.title;
-      document.getElementById('heroTechSnippet').innerText = hero.snippet;
-      heroEl.onclick = () => openStory(hero);
-
-      // 2. Render Article Feed (Feed items excluding hero and trending)
-      const feedItems = techArticles.filter(a => a.id !== hero.id && !a.trending);
-      const feedContainer = document.getElementById('articlesFeedContainer');
-      feedContainer.innerHTML = '';
-
-      feedItems.forEach((article, index) => {
-        const card = document.createElement('article');
-        card.className = 'tech-card';
-        card.onclick = () => openStory(article);
-
-        card.innerHTML = `
-          <img src="${article.image}" alt="${article.title}" />
-          <div class="tech-card-content">
-            <span class="tag-chip" style="font-size: 0.65rem; padding: 2px 8px;">${article.badge || article.category}</span>
-            <h3>${article.title}</h3>
-            <p>${article.snippet}</p>
-            <div class="meta">${article.source} • ${article.time}</div>
-          </div>
-        `;
-        feedContainer.appendChild(card);
-
-        // Insert in-feed Adsterra ad after the first feed item
-        if (index === 0) {
-          const adBox = document.createElement('div');
-          adBox.className = 'adsterra-wrapper ad-infeed';
-          adBox.innerHTML = `
-            <iframe srcdoc="<style>body{margin:0;display:flex;justify-content:center;align-items:center;background:transparent;}</style><script type='text/javascript'>atOptions = {'key' : '26440bed54d9f198e10c7a876eda05cf','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};<\\/script><script type='text/javascript' src='https://www.highrevenueformat.com/26440bed54d9f198e10c7a876eda05cf/invoke.js'><\\/script>" width="728" height="90" frameborder="0" scrolling="no"></iframe>
-          `;
-          feedContainer.appendChild(adBox);
-        }
-      });
-
-      // 3. Render Breakthrough Radar Sidebar
-      const radarContainer = document.getElementById('techRadarContainer');
-      radarContainer.innerHTML = '';
-      const radarItems = techArticles.filter(a => a.trending);
-
-      radarItems.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.onclick = () => openStory(item);
-        li.innerHTML = `
-          <span class="num">0${index + 1}</span>
-          <span class="text">${item.title}</span>
-        `;
-        radarContainer.appendChild(li);
-      });
-    }
-
-    function openStory(item) {
-      document.getElementById('mTitle').innerText = item.title;
-      document.getElementById('mTag').innerText = item.badge || item.category;
-      document.getElementById('mImg').src = item.image;
-      document.getElementById('mBody').innerText = item.content;
-      document.getElementById('mMeta').innerText = `${item.source} • ${item.time}`;
-      document.getElementById('techModal').classList.add('active');
-    }
-
-    function closeStory() {
-      document.getElementById('techModal').classList.remove('active');
-    }
-
-    function handleOutside(e) {
-      if (e.target.id === 'techModal') {
-        closeStory();
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', fetchTechNews);
-  </script>
-</body>
-</html>
+[
+  {
+    "id": 1,
+    "title": "Silicon Revolution: Sub-2nm Architecture Enters Commercial Production",
+    "category": "Semiconductors",
+    "badge": "Hardware Breakthrough",
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&auto=format&fit=crop&q=80",
+    "snippet": "Next-generation processing nodes breakthrough physical density limits, enabling high-performance efficiency across ultra-portable computing.",
+    "content": "Next-generation semiconductor fabs confirm scalable test wafers built on sub-2nm nodes. The breakthrough architecture reduces leakage currents by 35% while doubling transistor logic gates per square millimeter.",
+    "source": "Ars Technica",
+    "time": "15m ago",
+    "isHero": true,
+    "trending": false
+  },
+  {
+    "id": 2,
+    "title": "Local AI Inference Runs Fluidly on Edge Hardware",
+    "category": "Artificial Intelligence",
+    "badge": "Edge AI",
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80",
+    "snippet": "New quantized architectures allow multimodal foundation models to run without relying on centralized cloud clusters.",
+    "content": "Compact foundation models can now execute zero-latency multimodal reasoning directly on edge hardware without passing telemetry or personal tokens to off-site cloud clusters.",
+    "source": "Wired",
+    "time": "40m ago",
+    "isHero": false,
+    "trending": false
+  },
+  {
+    "id": 3,
+    "title": "Direct-to-Cell Satellite Handshakes Go Live",
+    "category": "Telecom",
+    "badge": "Space Tech",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80",
+    "snippet": "Unmodified consumer mobile hardware successfully connects to low-earth orbit constellations for dead-zone voice and data.",
+    "content": "Low-earth orbit arrays initiate high-bandwidth cellular handoffs, allowing stock unmodified smartphones to receive broadband coverage in remote blind spots worldwide.",
+    "source": "The Verge",
+    "time": "1h ago",
+    "isHero": false,
+    "trending": false
+  },
+  {
+    "id": 4,
+    "title": "Solid-State Battery Runtimes Shatter Previous Records",
+    "category": "Energy Tech",
+    "badge": "Batteries",
+    "image": "https://images.unsplash.com/photo-1558441719-8b489c63f7d1?w=600&auto=format&fit=crop&q=80",
+    "snippet": "Pilot road testing reveals substantial degradation immunity and sub-ten-minute rapid recharge capabilities.",
+    "content": "Automotive solid-state battery packs complete 1,200 continuous thermal stress cycles while retaining 96% charge retention capacity.",
+    "source": "Electrek",
+    "time": "3h ago",
+    "isHero": false,
+    "trending": false
+  },
+  {
+    "id": 5,
+    "title": "Event-based neuromorphic optical chips cut camera latency",
+    "category": "Sensors",
+    "badge": "Neuromorphic",
+    "image": "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=600&auto=format&fit=crop&q=80",
+    "snippet": "Optical chips discard static frames to calculate temporal changes pixel-by-pixel.",
+    "content": "Event-based optical sensors discard static frames to calculate temporal changes pixel-by-pixel, slashing power consumption by 90%.",
+    "source": "TechRadar",
+    "time": "2h ago",
+    "isHero": false,
+    "trending": true
+  },
+  {
+    "id": 6,
+    "title": "Photonic quantum links operate over standard metropolitan fiber",
+    "category": "Quantum",
+    "badge": "Photonics",
+    "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=80",
+    "snippet": "Quantum entanglement keys sustained over existing municipal dark-fiber loops without repeaters.",
+    "content": "Researchers sustain high-fidelity quantum entanglement keys over existing municipal dark-fiber loops without repeaters.",
+    "source": "Nature Tech",
+    "time": "4h ago",
+    "isHero": false,
+    "trending": true
+  },
+  {
+    "id": 7,
+    "title": "Self-healing polymer covers eliminate fold stress on flex displays",
+    "category": "Displays",
+    "badge": "Materials",
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80",
+    "snippet": "Elastomeric polymer layers seal microscopic fold fractures on flexible glass within minutes.",
+    "content": "Elastomeric polymer layers seal microscopic fold fractures on flexible glass within minutes under ambient warmth.",
+    "source": "DisplayReview",
+    "time": "6h ago",
+    "isHero": false,
+    "trending": true
+  }
+]
