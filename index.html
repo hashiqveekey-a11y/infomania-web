@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +48,6 @@
       min-height: 100vh;
     }
 
-    /* Header */
     header {
       padding: 20px 0;
       display: flex;
@@ -73,7 +71,6 @@
       text-decoration: none;
     }
 
-    /* Category Buttons */
     .category-group {
       display: flex;
       gap: 12px;
@@ -113,7 +110,6 @@
       filter: brightness(1.1);
     }
 
-    /* Ad Spaces */
     .ad-space {
       background: rgba(255, 255, 255, 0.02);
       border: 1px dashed rgba(255, 255, 255, 0.1);
@@ -133,7 +129,7 @@
     }
 
     .ad-native {
-      min-height: 150px;
+      min-height: 120px;
       margin: 28px 0;
     }
 
@@ -142,7 +138,6 @@
       min-height: 250px;
     }
 
-    /* Layout */
     .layout-grid {
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -157,12 +152,11 @@
       gap: 28px;
     }
 
-    /* Hero Card */
     .hero-card {
       position: relative;
       border-radius: 20px;
       overflow: hidden;
-      min-height: 380px;
+      min-height: 400px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -178,7 +172,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(9, 13, 22, 0.1) 0%, rgba(9, 13, 22, 0.95) 100%);
+      background: linear-gradient(180deg, rgba(9, 13, 22, 0.15) 0%, rgba(9, 13, 22, 0.95) 100%);
     }
 
     .hero-card:hover {
@@ -192,7 +186,7 @@
     }
 
     .hero-card h2 {
-      font-size: 1.75rem;
+      font-size: 1.85rem;
       font-weight: 800;
       margin: 10px 0;
       line-height: 1.25;
@@ -205,7 +199,6 @@
       max-width: 620px;
     }
 
-    /* News Cards Grid */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -279,7 +272,6 @@
       justify-content: space-between;
     }
 
-    /* Sidebar */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -335,7 +327,6 @@
       line-height: 1.4;
     }
 
-    /* Modal Styles */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -400,7 +391,6 @@
       margin-bottom: 14px;
     }
 
-    /* Footer */
     footer {
       border-top: 1px solid var(--card-border);
       padding: 28px 0;
@@ -431,14 +421,9 @@
       color: #38bdf8;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
-      .layout-grid {
-        grid-template-columns: 1fr;
-      }
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
+      .layout-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
@@ -458,126 +443,60 @@
         padding: 8px 4px;
         font-size: 0.78rem;
       }
-      .hero-card {
-        min-height: 280px;
-        padding: 20px;
-      }
-      .hero-card h2 {
-        font-size: 1.3rem;
-      }
-      .modal-card {
-        padding: 20px;
-      }
-      .modal-card img {
-        height: 180px;
-      }
+      .hero-card { min-height: 300px; padding: 20px; }
+      .hero-card h2 { font-size: 1.35rem; }
+      .modal-card { padding: 20px; }
+      .modal-card img { height: 180px; }
     }
   </style>
 </head>
 <body>
- <div class="wrapper">
-    <!-- Navbar -->
+  <div class="wrapper">
     <header>
-      <a href="#" class="brand">INFOMANIA</a>
+      <a href="index.html" class="brand">INFOMANIA</a>
       <nav class="category-group">
-        <a href="games.html" class="cat-btn game">&#127918; Games</a>
-        <a href="technology.html" class="cat-btn tech">&#128640; Technology</a>
-        <a href="jobs.html" class="cat-btn job">&#128188; Jobs</a>
+        <a href="games.html" class="cat-btn game">🎮 Games</a>
+        <a href="technology.html" class="cat-btn tech">🚀 Technology</a>
+        <a href="jobs.html" class="cat-btn job">💼 Jobs</a>
       </nav>
     </header>
 
-    <!-- Leaderboard Ad Space -->
     <div class="ad-space ad-leaderboard">
-      [Leaderboard Banner Ad Space]
+      [AdSense / AdMob Leaderboard Banner - 728x90]
     </div>
 
-    <!-- Main Grid -->
     <main class="layout-grid">
       <section class="feed-column">
-        <!-- Hero Featured Card (Clickable) -->
-        <article class="hero-card" 
-          style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&auto=format&fit=crop&q=80')"
-          onclick="openNews('Cyberpunk 2077: Phantom Liberty Evolution', 'Games', 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&auto=format&fit=crop&q=80', 'The major expansion brings revolutionary overhaul updates including reconstructed cyberware systems, revamped perk trees, dynamic vehicle combat, and completely overhauled district artificial intelligence. Players navigate complex diplomatic espionage in the heart of Dogtown.', 'GamesRadar • 10m ago')">
+        <!-- Dynamic Hero Card -->
+        <article class="hero-card" id="heroCardContainer">
           <div class="hero-content">
-            <span class="badge badge-game">Games</span>
-            <h2>Cyberpunk 2077: Phantom Liberty Evolution Unveiled</h2>
-            <p>Comprehensive gameplay mechanics revamp, expanded story arcs, and technical upgrades now live across platforms.</p>
+            <span class="badge badge-game" id="heroBadge">Featured</span>
+            <h2 id="heroTitle">Loading latest story...</h2>
+            <p id="heroSnippet"></p>
           </div>
         </article>
 
-        <!-- Native Ad Space -->
         <div class="ad-space ad-native">
-          [Native Ad Space]
+          [Responsive Native In-Feed Ad Unit]
         </div>
 
-        <!-- Secondary Grid Cards -->
-        <div class="cards-grid">
-          <!-- Tech News Card -->
-          <article class="news-card" 
-            onclick="openNews('Quantum Computing Breakthroughs in Qubit Stability', 'Technology', 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80', 'Research labs announce milestone progress in error suppression for commercial quantum processors. Scalable coherence enables longer algorithmic execution times without exponential thermal interference.', 'The Verge • 25m ago')">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80" alt="Tech">
-            <div class="news-card-body">
-              <span class="badge badge-tech">Technology</span>
-              <h3>Quantum Computing Qubit Breakthrough</h3>
-              <p>Breakthrough noise mitigation tests achieve record qubit fidelity and coherence runtimes.</p>
-              <div class="meta">
-                <span>The Verge</span>
-                <span>25m ago</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Job News Card -->
-          <article class="news-card" 
-            onclick="openNews('High-Demand Careers: Engineering & AI Specialization', 'Jobs', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80', 'Global enterprises expand recruitment for cloud architects, AI engineers, and distributed systems specialists. Salary benchmarks and flexible workspace models continue to evolve rapidly.', 'TechCrunch • 1h ago')">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80" alt="Jobs">
-            <div class="news-card-body">
-              <span class="badge badge-job">Jobs</span>
-              <h3>In-Demand AI & Cloud Engineering Careers</h3>
-              <p>Modern job market trends show elevated hiring for systems engineers and secure infrastructure roles.</p>
-              <div class="meta">
-                <span>TechCrunch</span>
-                <span>1h ago</span>
-              </div>
-            </div>
-          </article>
-        </div>
+        <!-- Dynamic Grid Cards -->
+        <div class="cards-grid" id="newsGridContainer"></div>
       </section>
 
-      <!-- Sidebar -->
+      <!-- Dynamic Sidebar Trending -->
       <aside class="sidebar">
         <div class="side-box">
-          <h3>Trending Now</h3>
-          <div class="trending-list">
-            <div class="trending-item" onclick="openNews('Next-Gen Console Architectures Incoming', 'Gaming', 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600&auto=format&fit=crop&q=80', 'Hardware supply chains register orders indicating hardware transitions with customized silicon nodes for 2026 releases.', 'DigitalTrends • 2h ago')">
-              <span class="trend-idx">01</span>
-              <div>
-                <h4>Next-Gen Console Architecture Specifications Leaked</h4>
-              </div>
-            </div>
-            <div class="trending-item" onclick="openNews('Distributed Team Frameworks Standardized', 'Jobs', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=80', 'Enterprise organizations adopt unified cross-border asynchronous engineering workflows.', 'Forbes • 4h ago')">
-              <span class="trend-idx">02</span>
-              <div>
-                <h4>Distributed Engineering Teams Adopt Synchronous Work Models</h4>
-              </div>
-            </div>
-            <div class="trending-item" onclick="openNews('Local Open-Source LLMs for Edge Devices', 'Technology', 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80', 'Compact foundation models can now run entirely on modern mobile hardware without cloud relay overhead.', 'Ars Technica • 5h ago')">
-              <span class="trend-idx">03</span>
-              <div>
-                <h4>Lightweight Foundation Models Run Locally on Consumer Hardware</h4>
-              </div>
-            </div>
-          </div>
+          <h3>Trending Radar</h3>
+          <div class="trending-list" id="trendingContainer"></div>
         </div>
 
-        <!-- Sidebar Ad Space -->
         <div class="side-box ad-sidebar">
-          [Vertical Banner Ad Space]
+          [Vertical Banner Ad Space - 300x250 / 300x600]
         </div>
       </aside>
     </main>
 
-    <!-- Footer -->
     <footer>
       <nav class="footer-nav">
         <a onclick="openModal('about')">About</a>
@@ -601,7 +520,7 @@
     </div>
   </div>
 
-  <!-- Info Modal (About, Privacy, Terms, Contact) -->
+  <!-- Info Modal -->
   <div class="modal-overlay" id="infoModal" onclick="closeOnOutside(event, 'infoModal')">
     <div class="modal-card">
       <button class="close-btn" onclick="closeModal('infoModal')">&times;</button>
@@ -610,17 +529,90 @@
     </div>
   </div>
 
-  <!-- Modal Interactivity Logic -->
   <script>
-    function openNews(title, category, imgUrl, content, meta) {
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalBadge').innerText = category;
-      document.getElementById('modalBadge').className = 'badge ' + 
-        (category.toLowerCase() === 'games' || category.toLowerCase() === 'gaming' ? 'badge-game' : 
-         category.toLowerCase() === 'technology' ? 'badge-tech' : 'badge-job');
-      document.getElementById('modalImg').src = imgUrl;
-      document.getElementById('modalBody').innerText = content;
-      document.getElementById('modalMeta').innerText = meta;
+    let newsArticles = [];
+
+    function getBadgeClass(cat) {
+      const c = (cat || '').toLowerCase();
+      if (c.includes('game')) return 'badge-game';
+      if (c.includes('tech')) return 'badge-tech';
+      return 'badge-job';
+    }
+
+    async function fetchNewsJson() {
+      try {
+        const res = await fetch('news.json');
+        if (!res.ok) throw new Error('Failed to load news.json');
+        newsArticles = await res.json();
+        renderNews();
+      } catch (err) {
+        console.error('Error reading news.json:', err);
+      }
+    }
+
+    function renderNews() {
+      if (!newsArticles.length) return;
+
+      // 1. Render Hero Banner
+      const hero = newsArticles.find(n => n.isHero) || newsArticles[0];
+      const heroContainer = document.getElementById('heroCardContainer');
+      heroContainer.style.backgroundImage = `url('${hero.image}')`;
+      document.getElementById('heroBadge').innerText = hero.badge || hero.category;
+      document.getElementById('heroBadge').className = 'badge ' + getBadgeClass(hero.category);
+      document.getElementById('heroTitle').innerText = hero.title;
+      document.getElementById('heroSnippet').innerText = hero.snippet;
+      heroContainer.onclick = () => openNews(hero);
+
+      // 2. Render Secondary News Cards (non-hero and non-trending preferred)
+      const gridItems = newsArticles.filter(n => n.id !== hero.id && !n.trending);
+      const gridContainer = document.getElementById('newsGridContainer');
+      gridContainer.innerHTML = '';
+
+      gridItems.forEach(item => {
+        const card = document.createElement('article');
+        card.className = 'news-card';
+        card.onclick = () => openNews(item);
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.title}">
+          <div class="news-card-body">
+            <span class="badge ${getBadgeClass(item.category)}">${item.badge || item.category}</span>
+            <h3>${item.title}</h3>
+            <p>${item.snippet}</p>
+            <div class="meta">
+              <span>${item.source}</span>
+              <span>${item.time}</span>
+            </div>
+          </div>
+        `;
+        gridContainer.appendChild(card);
+      });
+
+      // 3. Render Trending Sidebar
+      const trendingItems = newsArticles.filter(n => n.trending);
+      const trendContainer = document.getElementById('trendingContainer');
+      trendContainer.innerHTML = '';
+
+      trendingItems.forEach((item, index) => {
+        const trend = document.createElement('div');
+        trend.className = 'trending-item';
+        trend.onclick = () => openNews(item);
+        trend.innerHTML = `
+          <span class="trend-idx">0${index + 1}</span>
+          <div>
+            <h4>${item.title}</h4>
+          </div>
+        `;
+        trendContainer.appendChild(trend);
+      });
+    }
+
+    function openNews(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalBadge').innerText = item.badge || item.category;
+      document.getElementById('modalBadge').className = 'badge ' + getBadgeClass(item.category);
+      document.getElementById('modalImg').src = item.image;
+      document.getElementById('modalBody').innerText = item.content;
+      document.getElementById('modalMeta').innerText = `${item.source} • ${item.time}`;
       document.getElementById('newsModal').classList.add('active');
     }
 
@@ -660,6 +652,8 @@
         closeModal(id);
       }
     }
+
+    window.addEventListener('DOMContentLoaded', fetchNewsJson);
   </script>
 </body>
 </html>
