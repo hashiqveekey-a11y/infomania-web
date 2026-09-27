@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INFOMANIA - Main News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-game: #8b5cf6;
+      --accent-tech: #06b6d4;
+      --accent-job: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 100;
+    }
+
+    .brand {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    /* Category Buttons */
+    .category-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .cat-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .cat-btn.game {
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+    }
+
+    .cat-btn.tech {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+    }
+
+    .cat-btn.job {
+      background: linear-gradient(135deg, #059669, #047857);
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+    }
+
+    .cat-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    /* Ad Spaces */
+    .ad-space {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .ad-leaderboard {
+      width: 100%;
+      height: 90px;
+      margin: 24px 0;
+    }
+
+    .ad-native {
+      min-height: 150px;
+      margin: 28px 0;
+    }
+
+    .ad-sidebar {
+      width: 100%;
+      min-height: 250px;
+    }
+
+    /* Layout */
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 32px;
+      padding: 36px 0;
+      flex: 1;
+    }
+
+    .feed-column {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Hero Card */
+    .hero-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      cursor: pointer;
+      border: 1px solid var(--card-border);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9, 13, 22, 0.1) 0%, rgba(9, 13, 22, 0.95) 100%);
+    }
+
+    .hero-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin: 10px 0;
+      line-height: 1.25;
+    }
+
+    .hero-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      max-width: 620px;
+    }
+
+    /* News Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .news-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .news-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      width: fit-content;
+    }
+
+    .badge-game { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; }
+    .badge-tech { background: rgba(6, 182, 212, 0.2); color: #67e8f9; }
+    .badge-job { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; }
+
+    .news-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 10px 0 8px;
+      line-height: 1.35;
+    }
+
+    .news-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .meta {
+      font-size: 0.75rem;
+      color: #64748b;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .side-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .side-box h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 8px;
+    }
+
+    .trending-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .trending-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .trending-item:hover {
+      opacity: 0.8;
+    }
+
+    .trend-idx {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #334155;
+      line-height: 1;
+    }
+
+    .trending-item h4 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 7, 13, 0.8);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 200;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: var(--text-main);
+      font-size: 1.2rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .modal-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 16px 0;
+    }
+
+    .modal-card h2 {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      line-height: 1.3;
+    }
+
+    .modal-card p {
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 28px 0;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover {
+      color: #38bdf8;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .category-group {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      .cat-btn {
+        justify-content: center;
+        padding: 8px 4px;
+        font-size: 0.78rem;
+      }
+      .hero-card {
+        min-height: 280px;
+        padding: 20px;
+      }
+      .hero-card h2 {
+        font-size: 1.3rem;
+      }
+      .modal-card {
+        padding: 20px;
+      }
+      .modal-card img {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+ <div class="wrapper">
+    <!-- Navbar -->
+    <header>
+      <a href="#" class="brand">INFOMANIA</a>
+      <nav class="category-group">
+        <a href="games.html" class="cat-btn game">&#127918; Games</a>
+        <a href="technology.html" class="cat-btn tech">&#128640; Technology</a>
+        <a href="jobs.html" class="cat-btn job">&#128188; Jobs</a>
+      </nav>
+    </header>
+
+    <!-- Leaderboard Ad Space -->
+    <div class="ad-space ad-leaderboard">
+      [Leaderboard Banner Ad Space]
+    </div>
+
+    <!-- Main Grid -->
+    <main class="layout-grid">
+      <section class="feed-column">
+        <!-- Hero Featured Card (Clickable) -->
+        <article class="hero-card" 
+          style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&auto=format&fit=crop&q=80')"
+          onclick="openNews('Cyberpunk 2077: Phantom Liberty Evolution', 'Games', 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&auto=format&fit=crop&q=80', 'The major expansion brings revolutionary overhaul updates including reconstructed cyberware systems, revamped perk trees, dynamic vehicle combat, and completely overhauled district artificial intelligence. Players navigate complex diplomatic espionage in the heart of Dogtown.', 'GamesRadar • 10m ago')">
+          <div class="hero-content">
+            <span class="badge badge-game">Games</span>
+            <h2>Cyberpunk 2077: Phantom Liberty Evolution Unveiled</h2>
+            <p>Comprehensive gameplay mechanics revamp, expanded story arcs, and technical upgrades now live across platforms.</p>
+          </div>
+        </article>
+
+        <!-- Native Ad Space -->
+        <div class="ad-space ad-native">
+          [Native Ad Space]
+        </div>
+
+        <!-- Secondary Grid Cards -->
+        <div class="cards-grid">
+          <!-- Tech News Card -->
+          <article class="news-card" 
+            onclick="openNews('Quantum Computing Breakthroughs in Qubit Stability', 'Technology', 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80', 'Research labs announce milestone progress in error suppression for commercial quantum processors. Scalable coherence enables longer algorithmic execution times without exponential thermal interference.', 'The Verge • 25m ago')">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80" alt="Tech">
+            <div class="news-card-body">
+              <span class="badge badge-tech">Technology</span>
+              <h3>Quantum Computing Qubit Breakthrough</h3>
+              <p>Breakthrough noise mitigation tests achieve record qubit fidelity and coherence runtimes.</p>
+              <div class="meta">
+                <span>The Verge</span>
+                <span>25m ago</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Job News Card -->
+          <article class="news-card" 
+            onclick="openNews('High-Demand Careers: Engineering & AI Specialization', 'Jobs', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80', 'Global enterprises expand recruitment for cloud architects, AI engineers, and distributed systems specialists. Salary benchmarks and flexible workspace models continue to evolve rapidly.', 'TechCrunch • 1h ago')">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80" alt="Jobs">
+            <div class="news-card-body">
+              <span class="badge badge-job">Jobs</span>
+              <h3>In-Demand AI & Cloud Engineering Careers</h3>
+              <p>Modern job market trends show elevated hiring for systems engineers and secure infrastructure roles.</p>
+              <div class="meta">
+                <span>TechCrunch</span>
+                <span>1h ago</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="side-box">
+          <h3>Trending Now</h3>
+          <div class="trending-list">
+            <div class="trending-item" onclick="openNews('Next-Gen Console Architectures Incoming', 'Gaming', 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600&auto=format&fit=crop&q=80', 'Hardware supply chains register orders indicating hardware transitions with customized silicon nodes for 2026 releases.', 'DigitalTrends • 2h ago')">
+              <span class="trend-idx">01</span>
+              <div>
+                <h4>Next-Gen Console Architecture Specifications Leaked</h4>
+              </div>
+            </div>
+            <div class="trending-item" onclick="openNews('Distributed Team Frameworks Standardized', 'Jobs', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=80', 'Enterprise organizations adopt unified cross-border asynchronous engineering workflows.', 'Forbes • 4h ago')">
+              <span class="trend-idx">02</span>
+              <div>
+                <h4>Distributed Engineering Teams Adopt Synchronous Work Models</h4>
+              </div>
+            </div>
+            <div class="trending-item" onclick="openNews('Local Open-Source LLMs for Edge Devices', 'Technology', 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80', 'Compact foundation models can now run entirely on modern mobile hardware without cloud relay overhead.', 'Ars Technica • 5h ago')">
+              <span class="trend-idx">03</span>
+              <div>
+                <h4>Lightweight Foundation Models Run Locally on Consumer Hardware</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Ad Space -->
+        <div class="side-box ad-sidebar">
+          [Vertical Banner Ad Space]
+        </div>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <nav class="footer-nav">
+        <a onclick="openModal('about')">About</a>
+        <a onclick="openModal('privacy')">Privacy Policy</a>
+        <a onclick="openModal('terms')">Terms of Service</a>
+        <a onclick="openModal('contact')">Contact</a>
+      </nav>
+      <div>&copy; 2026 INFOMANIA. Curated by Hashiq VK. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <!-- News Article Reading Modal -->
+  <div class="modal-overlay" id="newsModal" onclick="closeOnOutside(event, 'newsModal')">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('newsModal')">&times;</button>
+      <span class="badge" id="modalBadge"></span>
+      <h2 id="modalTitle"></h2>
+      <div class="meta" id="modalMeta" style="margin: 8px 0;"></div>
+      <img id="modalImg" src="" alt="Cover" />
+      <p id="modalBody"></p>
+    </div>
+  </div>
+
+  <!-- Info Modal (About, Privacy, Terms, Contact) -->
+  <div class="modal-overlay" id="infoModal" onclick="closeOnOutside(event, 'infoModal')">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('infoModal')">&times;</button>
+      <h2 id="infoTitle" style="margin-bottom: 16px;"></h2>
+      <div id="infoContent"></div>
+    </div>
+  </div>
+
+  <!-- Modal Interactivity Logic -->
+  <script>
+    function openNews(title, category, imgUrl, content, meta) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalBadge').innerText = category;
+      document.getElementById('modalBadge').className = 'badge ' + 
+        (category.toLowerCase() === 'games' || category.toLowerCase() === 'gaming' ? 'badge-game' : 
+         category.toLowerCase() === 'technology' ? 'badge-tech' : 'badge-job');
+      document.getElementById('modalImg').src = imgUrl;
+      document.getElementById('modalBody').innerText = content;
+      document.getElementById('modalMeta').innerText = meta;
+      document.getElementById('newsModal').classList.add('active');
+    }
+
+    const infoData = {
+      about: {
+        title: "About INFOMANIA",
+        body: "<p>INFOMANIA delivers real-time, high-impact stories across Gaming, Cutting-edge Technology, and Global Career Opportunities.</p><p>Founded and maintained by <strong>Hashiq VK</strong>, INFOMANIA focuses on crisp, noise-free journalism tailored for modern tech enthusiasts and industry professionals.</p>"
+      },
+      privacy: {
+        title: "Privacy Policy",
+        body: "<p>At INFOMANIA, your privacy is our priority. We do not track your personal identity without your consent, nor do we sell browsing preferences to external brokers.</p><p>Local storage is solely utilized for performance optimization and UI caching.</p>"
+      },
+      terms: {
+        title: "Terms of Service",
+        body: "<p>All material published on INFOMANIA is protected under international copyright regulations.</p><p>Users are welcome to share snippets with proper attribution. Automated bulk scraping without prior authorization is strictly prohibited.</p>"
+      },
+      contact: {
+        title: "Contact Us",
+        body: "<p>Have a news tip, partnership idea, or feedback? Reach out directly:</p><p><strong>Founder / Lead:</strong> Hashiq VK<br><strong>Email:</strong> <a href='mailto:hashiqveekey@gmail.com' style='color:#38bdf8;'>hashiqveekey@gmail.com</a></p>"
+      }
+    };
+
+    function openModal(type) {
+      const data = infoData[type];
+      if (!data) return;
+      document.getElementById('infoTitle').innerText = data.title;
+      document.getElementById('infoContent').innerHTML = data.body;
+      document.getElementById('infoModal').classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function closeOnOutside(event, id) {
+      if (event.target.id === id) {
+        closeModal(id);
+      }
+    }
+  </script>
+</body>
+</html>

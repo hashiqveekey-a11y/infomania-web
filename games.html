@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Games Vault - INFOMANIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-purple: #8b5cf6;
+      --accent-pink: #ec4899;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    header {
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 100;
+    }
+
+    .brand {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    .category-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .cat-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cat-btn.home { background: rgba(255, 255, 255, 0.05); }
+    .cat-btn.game {
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      box-shadow: 0 4px 18px rgba(124, 58, 237, 0.45);
+      border-color: rgba(236, 72, 153, 0.4);
+    }
+    .cat-btn.tech { background: linear-gradient(135deg, #0284c7, #0369a1); }
+    .cat-btn.job { background: linear-gradient(135deg, #059669, #047857); }
+
+    .cat-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    /* Ad Banner Slot */
+    .ad-slot {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      height: 90px;
+      margin: 24px 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Featured Game Spotlight */
+    .spotlight {
+      margin: 24px 0;
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(180deg, rgba(9, 13, 22, 0.2) 0%, rgba(9, 13, 22, 0.95) 100%),
+                  url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1400&auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .spotlight-content {
+      position: relative;
+      z-index: 2;
+      max-width: 650px;
+    }
+
+    .tag-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .spotlight h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .spotlight p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      color: #ffffff;
+      padding: 12px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(236, 72, 153, 0.6);
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin: 30px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: var(--accent-purple);
+      border-radius: 4px;
+    }
+
+    /* Grid for Playable Web Games */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .game-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .game-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.2);
+    }
+
+    .game-thumb {
+      position: relative;
+      height: 190px;
+      overflow: hidden;
+    }
+
+    .game-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .game-card:hover .game-thumb img {
+      transform: scale(1.05);
+    }
+
+    .genre-chip {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(9, 13, 22, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+
+    .game-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .game-info h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .game-info p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.45;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .play-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .play-btn:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+    }
+
+    /* Modal for Play Screen */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 7, 13, 0.85);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 200;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .game-modal {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 800px;
+      height: 520px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-top {
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .modal-close {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .canvas-viewport {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #050811;
+      color: var(--text-muted);
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 28px 0;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 16px;
+    }
+
+    footer a:hover {
+      color: #38bdf8;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .category-group {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+      }
+      .cat-btn {
+        justify-content: center;
+        padding: 8px 4px;
+        font-size: 0.75rem;
+      }
+      .spotlight {
+        min-height: 320px;
+        padding: 20px;
+      }
+      .spotlight h2 {
+        font-size: 1.4rem;
+      }
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+      footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      footer a {
+        margin: 0 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <!-- Navbar with Active Games Highlight -->
+    <header>
+      <a href="index.html" class="brand">INFOMANIA</a>
+      <nav class="category-group">
+        <a href="index.html" class="cat-btn home">🏠 Home</a>
+        <a href="games.html" class="cat-btn game">🎮 Games</a>
+        <a href="technology.html" class="cat-btn tech">🚀 Tech</a>
+        <a href="jobs.html" class="cat-btn job">💼 Jobs</a>
+      </nav>
+    </header>
+
+    <!-- Top Leaderboard Ad Slot -->
+    <div class="ad-slot">
+      [AdSense / AdMob Leaderboard Banner - 728x90]
+    </div>
+
+    <!-- Spotlight / Hero Game -->
+    <section class="spotlight">
+      <div class="spotlight-content">
+        <span class="tag-badge">Featured Release</span>
+        <h2>Cyber City Nitro Drift</h2>
+        <p>High-speed neon arcade racer with responsive drift mechanics, responsive camera angles, and customizable retro cybercars.</p>
+        <button class="cta-btn" onclick="launchGame('Cyber City Nitro Drift')">
+          ▶ Play Instantly
+        </button>
+      </div>
+    </section>
+
+    <!-- Playable Web Games Grid -->
+    <h3 class="section-title">Trending Web Games</h3>
+    <div class="games-grid">
+      <!-- Game Card 1 -->
+      <div class="game-card">
+        <div class="game-thumb">
+          <img src="https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?w=600&auto=format&fit=crop&q=80" alt="Space Odyssey">
+          <span class="genre-chip">Sci-Fi Shooter</span>
+        </div>
+        <div class="game-info">
+          <h3>Cosmic Void 3D</h3>
+          <p>Dodge asteroid fields, collect quantum energy cells, and eliminate enemy patrols in deep space.</p>
+          <a href="javascript:void(0)" class="play-btn" onclick="launchGame('Cosmic Void 3D')">Play Game</a>
+        </div>
+      </div>
+
+      <!-- Game Card 2 -->
+      <div class="game-card">
+        <div class="game-thumb">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Puzzle Odyssey">
+          <span class="genre-chip">Strategy Puzzle</span>
+        </div>
+        <div class="game-info">
+          <h3>Hexa Matrix Quest</h3>
+          <p>Solve spatial pattern puzzles under strict time counters to unlock encrypted cyber grids.</p>
+          <a href="javascript:void(0)" class="play-btn" onclick="launchGame('Hexa Matrix Quest')">Play Game</a>
+        </div>
+      </div>
+
+      <!-- Game Card 3 -->
+      <div class="game-card">
+        <div class="game-thumb">
+          <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80" alt="Retro Arcade">
+          <span class="genre-chip">Retro Arcade</span>
+        </div>
+        <div class="game-info">
+          <h3>Pixel Runner X</h3>
+          <p>Fast-paced side-scrolling platformer with classic 8-bit synthetic beats and challenging obstacles.</p>
+          <a href="javascript:void(0)" class="play-btn" onclick="launchGame('Pixel Runner X')">Play Game</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Middle In-Feed Ad Banner -->
+    <div class="ad-slot" style="margin-bottom: 30px;">
+      [Responsive Native In-Feed Ad Slot]
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div>&copy; 2026 INFOMANIA. Curated by Hashiq VK.</div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="technology.html">Technology</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="mailto:hashiqveekey@gmail.com">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Game Player Modal / Viewport -->
+  <div class="modal-overlay" id="gameModal" onclick="handleOutsideClick(event)">
+    <div class="game-modal">
+      <div class="modal-top">
+        <h4 id="activeGameTitle" style="font-weight: 700;">Game Screen</h4>
+        <button class="modal-close" onclick="closeGame()">&times;</button>
+      </div>
+      <div class="canvas-viewport">
+        <div style="font-size: 2.2rem;">🕹️</div>
+        <div>Loading WebGL Canvas Container...</div>
+        <small style="color: #64748b;">(Embed your Canvas/Iframe source inside this container)</small>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function launchGame(gameName) {
+      document.getElementById('activeGameTitle').innerText = gameName;
+      document.getElementById('gameModal').classList.add('active');
+    }
+
+    function closeGame() {
+      document.getElementById('gameModal').classList.remove('active');
+    }
+
+    function handleOutsideClick(e) {
+      if (e.target.id === 'gameModal') {
+        closeGame();
+      }
+    }
+  </script>
+</body>
+</html>
