@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "role": "Staff Infrastructure Architect",
+    "company": "CloudScale Global",
+    "salary": "$160,000 - $190,000 / yr",
+    "badgeSalary": "$160k - $190k",
+    "location": "Remote (Global)",
+    "snippet": "Design and orchestrate multi-region Kubernetes clusters, automated zero-downtime CI/CD workflows, and fault-tolerant distributed networks.",
+    "desc": "Design and orchestrate multi-region Kubernetes clusters, automated zero-downtime CI/CD workflows, and fault-tolerant distributed networks. Minimum 5+ years with distributed systems engineering and infrastructure-as-code.",
+    "tags": ["Kubernetes", "Terraform", "CI/CD", "AWS/GCP"],
+    "isSpotlight": true,
+    "isTrending": true,
+    "trendTitle": "Remote engineering salaries increase across distributed teams"
+  },
+  {
+    "id": 2,
+    "role": "Native Android Engineer",
+    "company": "Nova Apps Studio",
+    "salary": "$110,000 - $135,000 / yr",
+    "badgeSalary": "$110k - $135k",
+    "location": "Remote",
+    "snippet": "Architect responsive, fluid mobile client applications. Deep familiarity with native lifecycle state control, background workers, and memory optimization required.",
+    "desc": "Develop performance-critical mobile applications using Kotlin, Java, and Jetpack components. Oversee offline-first caching, local database transactions, and smooth SDK integrations.",
+    "tags": ["Kotlin", "Android SDK", "Jetpack Compose", "Offline Sync"],
+    "isSpotlight": false,
+    "isTrending": false,
+    "trendTitle": ""
+  },
+  {
+    "id": 3,
+    "role": "Senior Full-Stack Developer",
+    "company": "NextCore Systems",
+    "salary": "$120,000 - $145,000 / yr",
+    "badgeSalary": "$120k - $145k",
+    "location": "Hybrid / Remote",
+    "snippet": "Build scalable APIs, responsive client interfaces, and maintain clean database query caching across production web apps.",
+    "desc": "Lead web architecture across modern front-end interfaces and Node.js microservices. Experience maintaining zero-downtime deployments and distributed database models.",
+    "tags": ["JavaScript", "Node.js", "PostgreSQL", "REST APIs"],
+    "isSpotlight": false,
+    "isTrending": true,
+    "trendTitle": "Distributed async teams emerge as the primary standard for tech roles"
+  },
+  {
+    "id": 4,
+    "role": "Applied ML & Edge Vision Specialist",
+    "company": "Vanguard Robotics",
+    "salary": "$140,000 - $170,000 / yr",
+    "badgeSalary": "$140k - $170k",
+    "location": "Remote (EMEA/APAC)",
+    "snippet": "Quantize and execute lightweight foundation models and computer vision pipelines running locally without server round-trips.",
+    "desc": "Deploy compact neural network architectures directly to consumer edge silicon. Focus on quantization techniques, low latency inference, and on-device processing pipelines.",
+    "tags": ["TensorFlow Lite", "OpenCV", "Python", "Edge AI"],
+    "isSpotlight": false,
+    "isTrending": true,
+    "trendTitle": "High demand for on-device ML and edge optimization specialists"
+  }
+]
