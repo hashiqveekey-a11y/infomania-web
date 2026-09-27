@@ -104,20 +104,35 @@
       filter: brightness(1.1);
     }
 
-    /* Ad Unit */
-    .ad-banner {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px dashed rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      height: 90px;
-      margin: 24px 0 10px;
+    /* Adsterra Wrapper Styles */
+    .adsterra-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .ad-leaderboard {
+      width: 100%;
+      min-height: 90px;
+      margin: 20px 0 10px;
+      overflow-x: auto;
+    }
+
+    .ad-infeed {
+      width: 100%;
+      min-height: 90px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    .ad-sidebar {
+      width: 100%;
+      min-height: 600px;
+      padding: 10px 0;
     }
 
     /* Hero Headline */
@@ -126,14 +141,13 @@
       position: relative;
       border-radius: 24px;
       overflow: hidden;
-      min-height: 420px;
+      min-height: 400px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding: 40px;
       border: 1px solid rgba(255, 255, 255, 0.12);
-      background: linear-gradient(180deg, rgba(9, 13, 22, 0.2) 0%, rgba(9, 13, 22, 0.95) 100%),
-                  url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&auto=format&fit=crop&q=80');
+      background: linear-gradient(180deg, rgba(9, 13, 22, 0.2) 0%, rgba(9, 13, 22, 0.95) 100%);
       background-size: cover;
       background-position: center;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
@@ -303,17 +317,6 @@
       line-height: 1.35;
     }
 
-    .ad-sidebar {
-      min-height: 250px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      border: 1px dashed rgba(255, 255, 255, 0.12);
-    }
-
     /* Reader Modal */
     .modal-overlay {
       position: fixed;
@@ -425,7 +428,7 @@
         font-size: 0.75rem;
       }
       .tech-hero {
-        min-height: 300px;
+        min-height: 280px;
         padding: 20px;
       }
       .tech-hero h2 {
@@ -463,86 +466,57 @@
       </nav>
     </header>
 
-    <!-- Top Banner Ad Unit -->
-    <div class="ad-banner">
-      [AdSense / AdMob Leaderboard Banner - 728x90]
+    <!-- Top Leaderboard Adsterra 728x90 -->
+    <div class="adsterra-wrapper ad-leaderboard">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '26440bed54d9f198e10c7a876eda05cf',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="https://www.highrevenueformat.com/26440bed54d9f198e10c7a876eda05cf/invoke.js"></script>
     </div>
 
-    <!-- Featured Story -->
-    <section class="tech-hero" onclick="openStory('Silicon Revolution: Sub-2nm Nodes Enter Production', 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&auto=format&fit=crop&q=80', 'Next-generation semiconductor fabs confirm scalable test wafers built on sub-2nm nodes. The breakthrough architecture reduces leakage currents by 35% while doubling transistor logic gates per square millimeter.', 'Ars Technica • 15m ago')">
+    <!-- Featured Hero Spotlight -->
+    <section class="tech-hero" id="heroTechContainer">
       <div class="hero-body">
-        <span class="tag-chip">Semiconductors</span>
-        <h2>Silicon Revolution: Sub-2nm Architecture Enters Commercial Production</h2>
-        <p>Next-generation processing nodes breakthrough physical density limits, enabling high-performance efficiency across ultra-portable computing.</p>
+        <span class="tag-chip" id="heroTechBadge">Breakthrough</span>
+        <h2 id="heroTechTitle">Loading Tech Breakthrough...</h2>
+        <p id="heroTechSnippet"></p>
       </div>
     </section>
 
     <!-- Layout: Articles + Sidebar -->
     <main class="layout-grid">
       <!-- Article List Feed -->
-      <section class="articles-feed">
-        <!-- Card 1 -->
-        <article class="tech-card" onclick="openStory('Local AI Inference: Edge Foundation Models', 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80', 'Compact foundation models can now execute zero-latency multimodal reasoning directly on edge hardware without passing telemetry or personal tokens to off-site cloud clusters.', 'Wired • 40m ago')">
-          <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80" alt="Local AI" />
-          <div class="tech-card-content">
-            <span class="tag-chip" style="font-size: 0.65rem; padding: 2px 8px;">Artificial Intelligence</span>
-            <h3>Local AI Inference Runs Fluidly on Edge Hardware</h3>
-            <p>New quantized architectures allow multimodal foundation models to run without relying on centralized cloud clusters.</p>
-            <div class="meta">Wired • 40m ago</div>
-          </div>
-        </article>
-
-        <!-- In-Feed Ad -->
-        <div class="ad-banner" style="height: 100px; margin: 0;">
-          [Responsive Native In-Feed Ad Unit]
-        </div>
-
-        <!-- Card 2 -->
-        <article class="tech-card" onclick="openStory('Direct-to-Cell Satellite Constellations Deploy', 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80', 'Low-earth orbit arrays initiate high-bandwidth cellular handoffs, allowing stock unmodified smartphones to receive broadband coverage in remote blind spots worldwide.', 'The Verge • 1h ago')">
-          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80" alt="Satellites" />
-          <div class="tech-card-content">
-            <span class="tag-chip" style="font-size: 0.65rem; padding: 2px 8px;">Telecom</span>
-            <h3>Direct-to-Cell Satellite Handshakes Go Live</h3>
-            <p>Unmodified consumer mobile hardware successfully connects to low-earth orbit constellations for dead-zone voice and data.</p>
-            <div class="meta">The Verge • 1h ago</div>
-          </div>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="tech-card" onclick="openStory('Solid-State Battery Field Tests Yield 800-Mile Runtimes', 'https://images.unsplash.com/photo-1558441719-8b489c63f7d1?w=600&auto=format&fit=crop&q=80', 'Automotive solid-state battery packs complete 1,200 continuous thermal stress cycles while retaining 96% charge retention capacity.', 'Electrek • 3h ago')">
-          <img src="https://images.unsplash.com/photo-1558441719-8b489c63f7d1?w=600&auto=format&fit=crop&q=80" alt="Batteries" />
-          <div class="tech-card-content">
-            <span class="tag-chip" style="font-size: 0.65rem; padding: 2px 8px;">Energy Tech</span>
-            <h3>Solid-State Battery Runtimes Shatter Previous Records</h3>
-            <p>Pilot road testing reveals substantial degradation immunity and sub-ten-minute rapid recharge capabilities.</p>
-            <div class="meta">Electrek • 3h ago</div>
-          </div>
-        </article>
+      <section class="articles-feed" id="articlesFeedContainer">
+        <!-- Rendered dynamically from technology.json with middle in-feed ad -->
       </section>
 
       <!-- Sidebar -->
       <aside class="sidebar">
         <div class="sidebar-widget">
           <h3>Breakthrough Radar</h3>
-          <ul>
-            <li onclick="openStory('Neuromorphic Sensors Mimic Biological Vision', 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=600&auto=format&fit=crop&q=80', 'Event-based optical sensors discard static frames to calculate temporal changes pixel-by-pixel, slashing power consumption by 90%.', 'TechRadar • 2h ago')">
-              <span class="num">01</span>
-              <span class="text">Event-based neuromorphic optical chips cut camera latency</span>
-            </li>
-            <li onclick="openStory('Photonic Quantum Teleportation Across Fiber Links', 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=80', 'Researchers sustain high-fidelity quantum entanglement keys over existing municipal dark-fiber loops without repeaters.', 'Nature Tech • 4h ago')">
-              <span class="num">02</span>
-              <span class="text">Photonic quantum links operate over standard metropolitan fiber</span>
-            </li>
-            <li onclick="openStory('Self-Healing OLED Substrates Prevent Micro-Fractures', 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80', 'Elastomeric polymer layers seal microscopic fold fractures on flexible glass within minutes under ambient warmth.', 'DisplayReview • 6h ago')">
-              <span class="num">03</span>
-              <span class="text">Self-healing polymer covers eliminate fold stress on flex displays</span>
-            </li>
+          <ul id="techRadarContainer">
+            <!-- Rendered dynamically from technology.json -->
           </ul>
         </div>
 
-        <!-- Vertical Ad Block -->
-        <div class="sidebar-widget ad-sidebar">
-          [Vertical Banner Ad Space - 300x250 / 300x600]
+        <!-- Adsterra 160x600 Vertical Banner -->
+        <div class="adsterra-wrapper ad-sidebar">
+          <script type="text/javascript">
+            atOptions = {
+              'key' : 'd184a7e889d1a9d742433dfcc5fafef2',
+              'format' : 'iframe',
+              'height' : 600,
+              'width' : 160,
+              'params' : {}
+            };
+          </script>
+          <script type="text/javascript" src="https://www.highrevenueformat.com/d184a7e889d1a9d742433dfcc5fafef2/invoke.js"></script>
         </div>
       </aside>
     </main>
@@ -572,11 +546,85 @@
   </div>
 
   <script>
-    function openStory(title, imgUrl, content, meta) {
-      document.getElementById('mTitle').innerText = title;
-      document.getElementById('mImg').src = imgUrl;
-      document.getElementById('mBody').innerText = content;
-      document.getElementById('mMeta').innerText = meta;
+    let techArticles = [];
+
+    async function fetchTechNews() {
+      try {
+        const response = await fetch('technology.json');
+        if (!response.ok) throw new Error('Failed to load technology.json');
+        techArticles = await response.json();
+        renderTech();
+      } catch (err) {
+        console.error('Error fetching technology.json:', err);
+      }
+    }
+
+    function renderTech() {
+      if (!techArticles.length) return;
+
+      // 1. Render Hero Spotlight
+      const hero = techArticles.find(a => a.isHero) || techArticles[0];
+      const heroEl = document.getElementById('heroTechContainer');
+      heroEl.style.backgroundImage = `linear-gradient(180deg, rgba(9, 13, 22, 0.2) 0%, rgba(9, 13, 22, 0.95) 100%), url('${hero.image}')`;
+      document.getElementById('heroTechBadge').innerText = hero.badge || hero.category;
+      document.getElementById('heroTechTitle').innerText = hero.title;
+      document.getElementById('heroTechSnippet').innerText = hero.snippet;
+      heroEl.onclick = () => openStory(hero);
+
+      // 2. Render Article Feed (Feed items excluding hero and trending)
+      const feedItems = techArticles.filter(a => a.id !== hero.id && !a.trending);
+      const feedContainer = document.getElementById('articlesFeedContainer');
+      feedContainer.innerHTML = '';
+
+      feedItems.forEach((article, index) => {
+        const card = document.createElement('article');
+        card.className = 'tech-card';
+        card.onclick = () => openStory(article);
+
+        card.innerHTML = `
+          <img src="${article.image}" alt="${article.title}" />
+          <div class="tech-card-content">
+            <span class="tag-chip" style="font-size: 0.65rem; padding: 2px 8px;">${article.badge || article.category}</span>
+            <h3>${article.title}</h3>
+            <p>${article.snippet}</p>
+            <div class="meta">${article.source} • ${article.time}</div>
+          </div>
+        `;
+        feedContainer.appendChild(card);
+
+        // Insert in-feed Adsterra ad after the first feed item
+        if (index === 0) {
+          const adBox = document.createElement('div');
+          adBox.className = 'adsterra-wrapper ad-infeed';
+          adBox.innerHTML = `
+            <iframe srcdoc="<style>body{margin:0;display:flex;justify-content:center;align-items:center;background:transparent;}</style><script type='text/javascript'>atOptions = {'key' : '26440bed54d9f198e10c7a876eda05cf','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};<\\/script><script type='text/javascript' src='https://www.highrevenueformat.com/26440bed54d9f198e10c7a876eda05cf/invoke.js'><\\/script>" width="728" height="90" frameborder="0" scrolling="no"></iframe>
+          `;
+          feedContainer.appendChild(adBox);
+        }
+      });
+
+      // 3. Render Breakthrough Radar Sidebar
+      const radarContainer = document.getElementById('techRadarContainer');
+      radarContainer.innerHTML = '';
+      const radarItems = techArticles.filter(a => a.trending);
+
+      radarItems.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.onclick = () => openStory(item);
+        li.innerHTML = `
+          <span class="num">0${index + 1}</span>
+          <span class="text">${item.title}</span>
+        `;
+        radarContainer.appendChild(li);
+      });
+    }
+
+    function openStory(item) {
+      document.getElementById('mTitle').innerText = item.title;
+      document.getElementById('mTag').innerText = item.badge || item.category;
+      document.getElementById('mImg').src = item.image;
+      document.getElementById('mBody').innerText = item.content;
+      document.getElementById('mMeta').innerText = `${item.source} • ${item.time}`;
       document.getElementById('techModal').classList.add('active');
     }
 
@@ -589,6 +637,8 @@
         closeStory();
       }
     }
+
+    window.addEventListener('DOMContentLoaded', fetchTechNews);
   </script>
 </body>
 </html>
