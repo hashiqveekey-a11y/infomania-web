@@ -47,7 +47,6 @@
       min-height: 100vh;
     }
 
-    /* Navbar */
     header {
       padding: 20px 0;
       display: flex;
@@ -104,29 +103,42 @@
       filter: brightness(1.1);
     }
 
-    /* Ad Unit */
-    .ad-banner {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px dashed rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      height: 90px;
-      margin: 24px 0 10px;
+    .adsterra-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    /* Hero Headline */
+    .ad-leaderboard {
+      width: 100%;
+      min-height: 90px;
+      margin: 20px 0 10px;
+      overflow-x: auto;
+    }
+
+    .ad-infeed {
+      width: 100%;
+      min-height: 90px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    .ad-sidebar {
+      width: 100%;
+      min-height: 600px;
+      padding: 10px 0;
+    }
+
     .career-hero {
       margin: 24px 0;
       position: relative;
       border-radius: 24px;
       overflow: hidden;
-      min-height: 400px;
+      min-height: 380px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -177,7 +189,6 @@
       line-height: 1.5;
     }
 
-    /* Main Grid */
     .layout-grid {
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -262,7 +273,6 @@
       border-radius: 6px;
     }
 
-    /* Sidebar */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -318,18 +328,6 @@
       line-height: 1.35;
     }
 
-    .ad-sidebar {
-      min-height: 250px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      border: 1px dashed rgba(255, 255, 255, 0.12);
-    }
-
-    /* Job Details Modal */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -391,7 +389,6 @@
       filter: brightness(1.1);
     }
 
-    /* Footer */
     footer {
       border-top: 1px solid var(--card-border);
       padding: 28px 0;
@@ -413,7 +410,6 @@
       color: #38bdf8;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .layout-grid {
         grid-template-columns: 1fr;
@@ -438,7 +434,7 @@
         font-size: 0.75rem;
       }
       .career-hero {
-        min-height: 300px;
+        min-height: 280px;
         padding: 20px;
       }
       .career-hero h2 {
@@ -461,7 +457,6 @@
 <body>
 
   <div class="wrapper">
-    <!-- Navbar with Active Jobs Highlight -->
     <header>
       <a href="index.html" class="brand">INFOMANIA</a>
       <nav class="category-group">
@@ -472,111 +467,60 @@
       </nav>
     </header>
 
-    <!-- Top Banner Ad Unit -->
-    <div class="ad-banner">
-      [AdSense / AdMob Leaderboard Banner - 728x90]
+    <!-- Adsterra 728x90 Leaderboard -->
+    <div class="adsterra-wrapper ad-leaderboard">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '26440bed54d9f198e10c7a876eda05cf',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="https://www.highrevenueformat.com/26440bed54d9f198e10c7a876eda05cf/invoke.js"></script>
     </div>
 
-    <!-- Featured Spotlight / Market Trends -->
-    <section class="career-hero" onclick="openJob('Staff Infrastructure Architect', 'CloudScale Global', '$160,000 - $190,000 / yr', 'Remote (Global)', 'Design and orchestrate multi-region Kubernetes clusters, automated zero-downtime CI/CD workflows, and fault-tolerant distributed networks. Minimum 5+ years with distributed systems engineering and infrastructure-as-code.')">
+    <!-- Dynamic Spotlight Hero -->
+    <section class="career-hero" id="heroSpotlightContainer">
       <div class="hero-body">
         <span class="tag-chip">Market Spotlight</span>
-        <h2>High-Yield Engineering & Remote Leadership Vacancies</h2>
-        <p>Global distributed teams ramp up specialized hiring for scalable cloud architecture, machine learning deployment, and resilient backend systems.</p>
+        <h2 id="heroRoleTitle">Loading Career Spotlight...</h2>
+        <p id="heroRoleDesc"></p>
       </div>
     </section>
 
     <!-- Main Grid: Job Listings + Sidebar -->
     <main class="layout-grid">
-      <section class="vacancies-list">
-        <!-- Listing 1 -->
-        <article class="vacancy-card" onclick="openJob('Native Android Engineer', 'Nova Apps Studio', '$110,000 - $135,000 / yr', 'Remote', 'Develop performance-critical mobile applications using Kotlin, Java, and Jetpack components. Oversee offline-first caching, local database transactions, and smooth SDK integrations.')">
-          <div class="vacancy-header">
-            <div>
-              <div class="role-title">Native Android Engineer</div>
-              <div class="company-name">Nova Apps Studio • Remote</div>
-            </div>
-            <div class="salary-badge">$110k - $135k</div>
-          </div>
-          <p class="role-snippet">Architect responsive, fluid mobile client applications. Deep familiarity with native lifecycle state control, background workers, and memory optimization required.</p>
-          <div class="tags-container">
-            <span class="tech-pill">Kotlin</span>
-            <span class="tech-pill">Android SDK</span>
-            <span class="tech-pill">Jetpack Compose</span>
-            <span class="tech-pill">Offline Sync</span>
-          </div>
-        </article>
-
-        <!-- In-Feed Ad Banner -->
-        <div class="ad-banner" style="height: 100px; margin: 0;">
-          [Responsive Native In-Feed Ad Unit]
-        </div>
-
-        <!-- Listing 2 -->
-        <article class="vacancy-card" onclick="openJob('Senior Full-Stack Developer', 'NextCore Systems', '$120,000 - $145,000 / yr', 'Hybrid / Remote', 'Lead web architecture across modern front-end interfaces and Node.js microservices. Experience maintaining zero-downtime deployments and distributed database models.')">
-          <div class="vacancy-header">
-            <div>
-              <div class="role-title">Senior Full-Stack Developer</div>
-              <div class="company-name">NextCore Systems • Hybrid / Remote</div>
-            </div>
-            <div class="salary-badge">$120k - $145k</div>
-          </div>
-          <p class="role-snippet">Build scalable APIs, responsive client interfaces, and maintain clean database query caching across production web apps.</p>
-          <div class="tags-container">
-            <span class="tech-pill">JavaScript</span>
-            <span class="tech-pill">Node.js</span>
-            <span class="tech-pill">PostgreSQL</span>
-            <span class="tech-pill">REST APIs</span>
-          </div>
-        </article>
-
-        <!-- Listing 3 -->
-        <article class="vacancy-card" onclick="openJob('Applied ML & Edge Vision Specialist', 'Vanguard Robotics', '$140,000 - $170,000 / yr', 'Remote (EMEA/APAC)', 'Deploy compact neural network architectures directly to consumer edge silicon. Focus on quantization techniques, low latency inference, and on-device processing pipelines.')">
-          <div class="vacancy-header">
-            <div>
-              <div class="role-title">Applied ML & Edge Vision Specialist</div>
-              <div class="company-name">Vanguard Robotics • Remote</div>
-            </div>
-            <div class="salary-badge">$140k - $170k</div>
-          </div>
-          <p class="role-snippet">Quantize and execute lightweight foundation models and computer vision pipelines running locally without server round-trips.</p>
-          <div class="tags-container">
-            <span class="tech-pill">TensorFlow Lite</span>
-            <span class="tech-pill">OpenCV</span>
-            <span class="tech-pill">Python</span>
-            <span class="tech-pill">Edge AI</span>
-          </div>
-        </article>
+      <section class="vacancies-list" id="vacanciesContainer">
+        <!-- Rendered dynamically from jobs.json -->
       </section>
 
       <!-- Sidebar -->
       <aside class="sidebar">
         <div class="sidebar-widget">
           <h3>Hiring Trends</h3>
-          <ul>
-            <li onclick="openJob('Staff Infrastructure Architect', 'CloudScale Global', '$160k - $190k', 'Remote', 'Detailed requirements for global infrastructure role.')">
-              <span class="num">01</span>
-              <span class="text">Remote engineering salaries increase across distributed teams</span>
-            </li>
-            <li onclick="openJob('Applied ML & Edge Vision Specialist', 'Vanguard Robotics', '$140k - $170k', 'Remote', 'Detailed requirements for on-device machine learning.')">
-              <span class="num">02</span>
-              <span class="text">High demand for on-device ML and edge optimization specialists</span>
-            </li>
-            <li onclick="openJob('Senior Full-Stack Developer', 'NextCore Systems', '$120k - $145k', 'Remote', 'Detailed requirements for modern full-stack web engineering.')">
-              <span class="num">03</span>
-              <span class="text">Distributed async teams emerge as the primary standard for tech roles</span>
-            </li>
+          <ul id="trendsContainer">
+            <!-- Rendered dynamically from jobs.json -->
           </ul>
         </div>
 
-        <!-- Vertical Ad Block -->
-        <div class="sidebar-widget ad-sidebar">
-          [Vertical Banner Ad Space - 300x250 / 300x600]
+        <!-- Adsterra 160x600 Vertical Banner -->
+        <div class="adsterra-wrapper ad-sidebar">
+          <script type="text/javascript">
+            atOptions = {
+              'key' : 'd184a7e889d1a9d742433dfcc5fafef2',
+              'format' : 'iframe',
+              'height' : 600,
+              'width' : 160,
+              'params' : {}
+            };
+          </script>
+          <script type="text/javascript" src="https://www.highrevenueformat.com/d184a7e889d1a9d742433dfcc5fafef2/invoke.js"></script>
         </div>
       </aside>
     </main>
 
-    <!-- Footer -->
     <footer>
       <div>&copy; 2026 INFOMANIA. Curated by Hashiq VK.</div>
       <div>
@@ -602,12 +546,87 @@
   </div>
 
   <script>
-    function openJob(role, company, salary, location, desc) {
-      document.getElementById('mRole').innerText = role;
-      document.getElementById('mCompany').innerText = company;
-      document.getElementById('mSalary').innerText = salary;
-      document.getElementById('mLocation').innerText = location;
-      document.getElementById('mDesc').innerText = desc;
+    let jobListings = [];
+
+    async function fetchJobs() {
+      try {
+        const response = await fetch('jobs.json');
+        if (!response.ok) throw new Error('Failed to load jobs.json');
+        jobListings = await response.json();
+        renderJobs();
+      } catch (err) {
+        console.error('Error fetching jobs:', err);
+      }
+    }
+
+    function renderJobs() {
+      if (!jobListings.length) return;
+
+      // 1. Render Spotlight Hero
+      const spotlight = jobListings.find(j => j.isSpotlight) || jobListings[0];
+      document.getElementById('heroRoleTitle').innerText = spotlight.role + ' • ' + spotlight.company;
+      document.getElementById('heroRoleDesc').innerText = spotlight.desc;
+      document.getElementById('heroSpotlightContainer').onclick = () => openJob(spotlight);
+
+      // 2. Render Vacancies List (with middle in-feed ad)
+      const container = document.getElementById('vacanciesContainer');
+      container.innerHTML = '';
+
+      jobListings.forEach((job, index) => {
+        const card = document.createElement('article');
+        card.className = 'vacancy-card';
+        card.onclick = () => openJob(job);
+
+        const tagsHtml = (job.tags || []).map(t => `<span class="tech-pill">${t}</span>`).join('');
+
+        card.innerHTML = `
+          <div class="vacancy-header">
+            <div>
+              <div class="role-title">${job.role}</div>
+              <div class="company-name">${job.company} • ${job.location}</div>
+            </div>
+            <div class="salary-badge">${job.badgeSalary || job.salary}</div>
+          </div>
+          <p class="role-snippet">${job.snippet}</p>
+          <div class="tags-container">
+            ${tagsHtml}
+          </div>
+        `;
+        container.appendChild(card);
+
+        // Insert in-feed ad after the first listing
+        if (index === 0) {
+          const adBox = document.createElement('div');
+          adBox.className = 'adsterra-wrapper ad-infeed';
+          adBox.innerHTML = `
+            <iframe srcdoc="<style>body{margin:0;display:flex;justify-content:center;align-items:center;background:transparent;}</style><script type='text/javascript'>atOptions = {'key' : '26440bed54d9f198e10c7a876eda05cf','format' : 'iframe','height' : 90,'width' : 728,'params' : {}};<\\/script><script type='text/javascript' src='https://www.highrevenueformat.com/26440bed54d9f198e10c7a876eda05cf/invoke.js'><\\/script>" width="728" height="90" frameborder="0" scrolling="no"></iframe>
+          `;
+          container.appendChild(adBox);
+        }
+      });
+
+      // 3. Render Hiring Trends Sidebar
+      const trendsContainer = document.getElementById('trendsContainer');
+      trendsContainer.innerHTML = '';
+      const trendingJobs = jobListings.filter(j => j.isTrending);
+
+      trendingJobs.forEach((job, index) => {
+        const li = document.createElement('li');
+        li.onclick = () => openJob(job);
+        li.innerHTML = `
+          <span class="num">0${index + 1}</span>
+          <span class="text">${job.trendTitle || job.role}</span>
+        `;
+        trendsContainer.appendChild(li);
+      });
+    }
+
+    function openJob(job) {
+      document.getElementById('mRole').innerText = job.role;
+      document.getElementById('mCompany').innerText = job.company;
+      document.getElementById('mSalary').innerText = job.salary;
+      document.getElementById('mLocation').innerText = job.location;
+      document.getElementById('mDesc').innerText = job.desc;
       document.getElementById('jobModal').classList.add('active');
     }
 
@@ -620,6 +639,8 @@
         closeJob();
       }
     }
+
+    window.addEventListener('DOMContentLoaded', fetchJobs);
   </script>
 </body>
 </html>
