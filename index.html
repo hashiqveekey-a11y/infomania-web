@@ -110,39 +110,35 @@
       filter: brightness(1.1);
     }
 
-    .ad-space {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px dashed rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+    /* Adsterra Wrapper Layouts */
+    .adsterra-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      text-align: center;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
     .ad-leaderboard {
       width: 100%;
-      height: 90px;
-      margin: 24px 0;
-    }
-
-    .ad-native {
-      min-height: 120px;
-      margin: 28px 0;
+      min-height: 90px;
+      margin: 20px 0;
+      overflow-x: auto;
     }
 
     .ad-sidebar {
       width: 100%;
-      min-height: 250px;
+      min-height: 600px;
+      padding: 10px 0;
     }
 
     .layout-grid {
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 32px;
-      padding: 36px 0;
+      padding: 24px 0 36px;
       flex: 1;
     }
 
@@ -461,8 +457,18 @@
       </nav>
     </header>
 
-    <div class="ad-space ad-leaderboard">
-      [AdSense / AdMob Leaderboard Banner - 728x90]
+    <!-- Adsterra 728x90 Leaderboard Banner -->
+    <div class="adsterra-wrapper ad-leaderboard">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '26440bed54d9f198e10c7a876eda05cf',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="https://www.highrevenueformat.com/26440bed54d9f198e10c7a876eda05cf/invoke.js"></script>
     </div>
 
     <main class="layout-grid">
@@ -476,23 +482,29 @@
           </div>
         </article>
 
-        <div class="ad-space ad-native">
-          [Responsive Native In-Feed Ad Unit]
-        </div>
-
         <!-- Dynamic Grid Cards -->
         <div class="cards-grid" id="newsGridContainer"></div>
       </section>
 
-      <!-- Dynamic Sidebar Trending -->
+      <!-- Dynamic Sidebar Trending & Adsterra 160x600 Banner -->
       <aside class="sidebar">
         <div class="side-box">
           <h3>Trending Radar</h3>
           <div class="trending-list" id="trendingContainer"></div>
         </div>
 
-        <div class="side-box ad-sidebar">
-          [Vertical Banner Ad Space - 300x250 / 300x600]
+        <!-- Adsterra 160x600 Vertical Banner -->
+        <div class="adsterra-wrapper ad-sidebar">
+          <script type="text/javascript">
+            atOptions = {
+              'key' : 'd184a7e889d1a9d742433dfcc5fafef2',
+              'format' : 'iframe',
+              'height' : 600,
+              'width' : 160,
+              'params' : {}
+            };
+          </script>
+          <script type="text/javascript" src="https://www.highrevenueformat.com/d184a7e889d1a9d742433dfcc5fafef2/invoke.js"></script>
         </div>
       </aside>
     </main>
@@ -553,7 +565,6 @@
     function renderNews() {
       if (!newsArticles.length) return;
 
-      // 1. Render Hero Banner
       const hero = newsArticles.find(n => n.isHero) || newsArticles[0];
       const heroContainer = document.getElementById('heroCardContainer');
       heroContainer.style.backgroundImage = `url('${hero.image}')`;
@@ -563,7 +574,6 @@
       document.getElementById('heroSnippet').innerText = hero.snippet;
       heroContainer.onclick = () => openNews(hero);
 
-      // 2. Render Secondary News Cards (non-hero and non-trending preferred)
       const gridItems = newsArticles.filter(n => n.id !== hero.id && !n.trending);
       const gridContainer = document.getElementById('newsGridContainer');
       gridContainer.innerHTML = '';
@@ -587,7 +597,6 @@
         gridContainer.appendChild(card);
       });
 
-      // 3. Render Trending Sidebar
       const trendingItems = newsArticles.filter(n => n.trending);
       const trendContainer = document.getElementById('trendingContainer');
       trendContainer.innerHTML = '';
