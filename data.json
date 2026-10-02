@@ -1,0 +1,169 @@
+{
+  "system_info": {
+    "warehouse_name": "NexStore Central Warehouse",
+    "version": "1.0.0",
+    "last_synced": "2026-10-02T13:43:00Z"
+  },
+  "inventory": [
+    {
+      "id": 1,
+      "sku": "8901020304",
+      "name": "Sunrich Sunflower Oil 1L",
+      "category": "Groceries",
+      "unit_price": 140.00,
+      "stock_quantity": 320,
+      "minimum_alert_threshold": 50,
+      "status": "In Stock"
+    },
+    {
+      "id": 2,
+      "sku": "8905647382",
+      "name": "Aashirvaad Superior MP Atta 10kg",
+      "category": "Staples",
+      "unit_price": 420.00,
+      "stock_quantity": 115,
+      "minimum_alert_threshold": 30,
+      "status": "In Stock"
+    },
+    {
+      "id": 3,
+      "sku": "8902143658",
+      "name": "Tata Premium Tea Leaf 500g",
+      "category": "Beverages",
+      "unit_price": 280.00,
+      "stock_quantity": 450,
+      "minimum_alert_threshold": 60,
+      "status": "In Stock"
+    },
+    {
+      "id": 4,
+      "sku": "8907896541",
+      "name": "Basmati Classic Reserve 5kg",
+      "category": "Staples",
+      "unit_price": 650.00,
+      "stock_quantity": 600,
+      "minimum_alert_threshold": 100,
+      "status": "In Stock"
+    }
+  ],
+  "branches": [
+    {
+      "branch_id": "BR-01",
+      "branch_name": "Downtown Supermarket",
+      "location": "Sector 4, Central District",
+      "contact_number": "+971-50-1234567",
+      "status": "Active"
+    },
+    {
+      "branch_id": "BR-02",
+      "branch_name": "Eastside Hypermarket",
+      "location": "East Commercial Hub",
+      "contact_number": "+971-50-7654321",
+      "status": "Active"
+    },
+    {
+      "branch_id": "BR-03",
+      "branch_name": "Westend Grocery Point",
+      "location": "West Plaza Street",
+      "contact_number": "+971-50-9876543",
+      "status": "Active"
+    }
+  ],
+  "branch_orders": [
+    {
+      "order_id": "REQ-1092",
+      "branch_id": "BR-01",
+      "branch_name": "Downtown Supermarket",
+      "item_sku": "8901020304",
+      "item_name": "Sunrich Sunflower Oil 1L",
+      "quantity_requested": 40,
+      "requested_at": "2026-10-02T10:14:00Z",
+      "status": "Pending"
+    },
+    {
+      "order_id": "REQ-1093",
+      "branch_id": "BR-01",
+      "branch_name": "Downtown Supermarket",
+      "item_sku": "8902143658",
+      "item_name": "Tata Premium Tea Leaf 500g",
+      "quantity_requested": 25,
+      "requested_at": "2026-10-02T10:18:00Z",
+      "status": "Pending"
+    },
+    {
+      "order_id": "REQ-1094",
+      "branch_id": "BR-02",
+      "branch_name": "Eastside Hypermarket",
+      "item_sku": "8905647382",
+      "item_name": "Aashirvaad Superior MP Atta 10kg",
+      "quantity_requested": 30,
+      "requested_at": "2026-10-02T11:05:00Z",
+      "status": "Pending"
+    }
+  ],
+  "transactions": [
+    {
+      "transaction_id": "TXN-8801",
+      "timestamp": "2026-10-02T09:30:00Z",
+      "date": "2026-10-02",
+      "type": "Dispatch Outflow",
+      "entity": "Downtown Supermarket",
+      "sku": "8901020304",
+      "item_name": "Sunrich Sunflower Oil 1L",
+      "quantity_change": -50,
+      "status": "Approved"
+    },
+    {
+      "transaction_id": "TXN-8800",
+      "timestamp": "2026-10-02T08:45:00Z",
+      "date": "2026-10-02",
+      "type": "Supplier Inbound",
+      "entity": "Central Logistics Consignment",
+      "sku": "8902143658",
+      "item_name": "Tata Premium Tea Leaf 500g",
+      "quantity_change": 100,
+      "status": "Completed"
+    },
+    {
+      "transaction_id": "TXN-8742",
+      "timestamp": "2026-10-01T16:15:00Z",
+      "date": "2026-10-01",
+      "type": "Dispatch Outflow",
+      "entity": "Westend Grocery Point",
+      "sku": "8907896541",
+      "item_name": "Basmati Classic Reserve 5kg",
+      "quantity_change": -100,
+      "status": "Approved"
+    }
+  ],
+  "branch_chats": [
+    {
+      "branch_id": "BR-01",
+      "messages": [
+        {
+          "sender": "Downtown Supermarket",
+          "message": "Please approve Request #REQ-1092 soon. We have a high customer rush today.",
+          "time": "10:15 AM",
+          "is_warehouse": false
+        },
+        {
+          "sender": "Warehouse Dispatch",
+          "message": "Dispatch team is checking pallet allocation. Stock will be released shortly.",
+          "time": "10:20 AM",
+          "is_warehouse": true
+        }
+      ]
+    },
+    {
+      "branch_id": "BR-02",
+      "messages": [
+        {
+          "sender": "Eastside Hypermarket",
+          "message": "Atta bags request submitted. Please let us know once truck is loaded.",
+          "time": "11:10 AM",
+          "is_warehouse": false
+        }
+      ]
+    }
+  ]
+}
